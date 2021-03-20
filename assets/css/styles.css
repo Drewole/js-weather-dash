@@ -1,18 +1,202 @@
 :root {
-     /* lets setup our vars */
      --font-family: "Nunito", sans-serif;
-     --white: rgb(247, 247, 247);
-     --off-white: rgba(252, 252, 252, 1);
+     --white: rgba(252, 252, 252, 1);
+     --off-white: rgba(247, 247, 247, 1);
      --blue: rgba(38, 84, 124, 1);
+     --light-blue: rgb(239, 247, 255);
      --yellow: rgba(255, 209, 102, 1);
      --pink: rgba(239, 71, 111, 1);
      --green: rgba(6, 214, 160, 1);
      --dark-text: rgb(12, 12, 12);
 }
 
+::-moz-selection {
+     background: var(--green);
+     opacity: 0.7;
+}
+::selection {
+     background: var(--green);
+     opacity: 0.7;
+}
+* {
+     box-sizing: border-box;
+}
 body {
      font-size: 16px;
      font-family: var(--font-family);
      background-color: var(--off-white);
      color: var(--dark-text);
+}
+
+header {
+     position: fixed;
+     width: 100%;
+     padding: 35px;
+     text-align: center;
+     background-color: var(--blue);
+     z-index: 10;
+     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+}
+header h1 {
+     color: var(--yellow);
+     margin: 0;
+}
+h1 {
+     font-size: 2rem;
+     text-transform: uppercase;
+     font-weight: 300;
+     color: var(--pink);
+     margin-bottom: 15px;
+}
+h2 {
+     font-size: 1.4rem;
+     color: var(--pink);
+     text-transform: uppercase;
+     margin-bottom: 20px;
+}
+h3 {
+     font-weight: 700;
+     text-transform: uppercase;
+     font-size: 18px;
+     margin-bottom: 15px;
+     color: var(--blue);
+}
+.container {
+     padding-top: 102px;
+     display: flex;
+}
+aside {
+     padding: 2%;
+     flex-grow: 1;
+     background-color: var(--white);
+     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+     border-radius: 0 0 8px 0;
+     min-width: 300px;
+}
+
+aside ul {
+     margin-top: 20px;
+}
+aside li {
+     padding: 15px 20px;
+     border: 1px solid rgb(235, 235, 235);
+     font-size: 14px;
+     text-transform: uppercase;
+     color: var(--blue);
+     transition: background 0.2s ease-in-out;
+}
+
+aside li:hover {
+     background-color: rgb(235, 235, 235);
+     cursor: pointer;
+}
+aside li span {
+     visibility: hidden;
+     float: right;
+     margin-top: -6px;
+     font-size: 20px;
+     color: var(--pink);
+     transition: color 0.2s ease-in-out;
+}
+aside li:hover span {
+     visibility: visible;
+}
+aside li:hover span:hover {
+     color: var(--green);
+}
+main {
+     max-width: 86%;
+     flex-grow: 4;
+}
+.search {
+     position: relative;
+     z-index: 1;
+}
+.search label {
+     width: 100%;
+     display: block;
+     text-transform: uppercase;
+     font-size: 14px;
+}
+.search input {
+     line-height: 2rem;
+     width: 200px;
+}
+
+.search button {
+     position: relative;
+     top: 7px;
+     border: none;
+     font-size: 30px;
+     background-color: var(--pink);
+     color: var(--white);
+     border-radius: 3px;
+     cursor: pointer;
+}
+.search button span {
+     padding: 5px;
+}
+.search button:hover {
+     background-color: var(--green);
+}
+main {
+     padding: 2vw;
+}
+.today {
+     background-color: var(--white);
+     margin-bottom: 4vh;
+     padding: 2vw;
+     flex-basis: 100%;
+     width: 100%;
+     border-radius: 8px;
+     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+.today li {
+     padding: 10px 0;
+}
+.today h2 {
+     margin-top: 25px;
+     color: var(--blue);
+     font-weight: 700;
+}
+.uv {
+     padding: 5px 10px;
+     border-radius: 2px;
+}
+.uv.low {
+     background-color: var(--green);
+}
+.uv.moderate {
+     background-color: var(--yellow);
+}
+.uv.high {
+     background-color: var(--pink);
+}
+.five-day {
+     margin-bottom: 4vh;
+     padding: 2vw;
+}
+ol {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+}
+ol img {
+     margin-bottom: 20px;
+     text-align: center;
+}
+ol li {
+     display: block;
+     max-width: 17%;
+     border: 2px solid var(--white);
+     background-color: var(--light-blue);
+     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+     border-radius: 6px;
+     padding: 2vw;
+}
+ol li span {
+     width: 100%;
+     display: block;
+     padding: 15px 0;
 }

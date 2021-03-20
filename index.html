@@ -8,8 +8,9 @@
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>JS Weather Dash App</title>
           <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
           <link rel="stylesheet" href="assets/css/reset.css" />
-          <link rel="stylesheet" href="assets/css/style.css" />
+          <link rel="stylesheet" href="assets/css/styles.css" />
      </head>
      <body>
           <header>
@@ -21,54 +22,85 @@
                          <label for="search">What City?</label>
                          <input name="search" type="text" />
                          <button class="search">
-                              <!-- lets grab an icon from somewhere to use here -->
+                              <span class="material-icons">
+                                   search
+                              </span>
                          </button>
                     </div>
+                    <ul class="cities">
+                         <li>
+                              Minneapolis
+                              <span class="material-icons">
+                                   delete
+                              </span>
+                         </li>
+                         <li>
+                              New York
+                              <span class="material-icons">
+                                   delete
+                              </span>
+                         </li>
+                         <li>
+                              Los Angeles
+                              <span class="material-icons">
+                                   delete
+                              </span>
+                         </li>
+                         <li>
+                              Atlanta
+                              <span class="material-icons">
+                                   delete
+                              </span>
+                         </li>
+                    </ul>
                </aside>
                <main>
                     <section class="today">
+                         <h1>Today</h1>
                          <h2>Atlanta (8/15/2019) CloudIcon</h2>
                          <ul class="summary">
                               <li>Temperature: 90.0F</li>
                               <li>Humidity: 41%</li>
                               <li>Wind Speed: 4.7 MPH</li>
-                              <li>UV Index: <span class="uv">9.49</span></li>
+                              <li>UV Index: <span class="uv low">9.49</span></li>
                          </ul>
                     </section>
-                    <section class="5-day">
+                    <section class="five-day">
                          <h2>5-Day Forecast</h2>
-                         <ol class="forecast">
-                              <li>
-                                   <h3>8/16/2021</h3>
-                                   <img src="#" alt="forcast icon" />
-                                   <span class="temp">Temp: 86.84F</span>
-                                   <span class="humidity">Humidity: 43%</span>
-                              </li>
-                              <li>
-                                   <h3>8/16/2021</h3>
-                                   <img src="#" alt="forcast icon" />
-                                   <span class="temp">Temp: 86.84F</span>
-                                   <span class="humidity">Humidity: 43%</span>
-                              </li>
-                              <li>
-                                   <h3>8/16/2021</h3>
-                                   <img src="#" alt="forcast icon" />
-                                   <span class="temp">Temp: 86.84F</span>
-                                   <span class="humidity">Humidity: 43%</span>
-                              </li>
-                              <li>
-                                   <h3>8/16/2021</h3>
-                                   <img src="#" alt="forcast icon" />
-                                   <span class="temp">Temp: 86.84F</span>
-                                   <span class="humidity">Humidity: 43%</span>
-                              </li>
-                              <li>
-                                   <h3>8/16/2021</h3>
-                                   <img src="#" alt="forcast icon" />
-                                   <span class="temp">Temp: 86.84F</span>
-                                   <span class="humidity">Humidity: 43%</span>
-                              </li>
-                         </ol>
+                         <div class="row">
+                              <ol class="forecast">
+                                   <li class="card">
+                                        <h3>8/16/2021</h3>
+                                        <img src="#" alt="forcast icon" />
+                                        <span class="temp">Temp: 86.84F</span>
+                                        <span class="humidity">Humidity: 43%</span>
+                                   </li>
+                                   <li class="card">
+                                        <h3>8/16/2021</h3>
+                                        <img src="#" alt="forcast icon" />
+                                        <span class="temp">Temp: 86.84F</span>
+                                        <span class="humidity">Humidity: 43%</span>
+                                   </li>
+                                   <li class="card">
+                                        <h3>8/16/2021</h3>
+                                        <img src="#" alt="forcast icon" />
+                                        <span class="temp">Temp: 86.84F</span>
+                                        <span class="humidity">Humidity: 43%</span>
+                                   </li>
+                                   <li class="card">
+                                        <h3>8/16/2021</h3>
+                                        <img src="#" alt="forcast icon" />
+                                        <span class="temp">Temp: 86.84F</span>
+                                        <span class="humidity">Humidity: 43%</span>
+                                   </li>
+                                   <li class="card">
+                                        <h3>8/16/2021</h3>
+                                        <img src="#" alt="forcast icon" />
+                                        <span class="temp">Temp: 86.84F</span>
+                                        <span class="humidity">Humidity: 43%</span>
+                                   </li>
+                              </ol>
+                         </div>
                     </section>
                </main>
           </div>
