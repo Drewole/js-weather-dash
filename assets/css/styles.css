@@ -1,0 +1,18 @@
+:root {
+     /* lets setup our vars */
+     --font-family: "Nunito", sans-serif;
+     --white: rgb(247, 247, 247);
+     --off-white: rgba(252, 252, 252, 1);
+     --blue: rgba(38, 84, 124, 1);
+     --yellow: rgba(255, 209, 102, 1);
+     --pink: rgba(239, 71, 111, 1);
+     --green: rgba(6, 214, 160, 1);
+     --dark-text: rgb(12, 12, 12);
+}
+
+body {
+     font-size: 16px;
+     font-family: var(--font-family);
+     background-color: var(--off-white);
+     color: var(--dark-text);
+}
