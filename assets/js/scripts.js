@@ -48,19 +48,21 @@ function makeCityList(arr) {
 
 		//This will be our HTML
 		let liTemplate = `
+			<li>
                          ${arr[i]}
                         <span class="material-icons">
                               delete
                         </span>
+			</li>
                   `;
 			
 
 		//Lets create the element, add some classes and set some attributes, then add it to the bottom of the container div
-		var citySearchItem = document.createElement("li");
+		var citySearchItem = $("<li>");
 		citySearchItem.innerHTML = liTemplate;
-		citySearchItem.classList.add("time-block", "row");
 
-		citiesListEl.appendChild(timeBlock);
+		citiesListEl.append(liTemplate);
+		console.log(liTemplate)
 	}
 
 
