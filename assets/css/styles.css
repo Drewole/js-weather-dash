@@ -38,7 +38,7 @@ header {
      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
 }
 header h1 {
-     color: var(--yellow);
+     color: var(--white);
      margin: 0;
 }
 h1 {
@@ -76,33 +76,40 @@ aside {
 
 aside ul {
      margin-top: 20px;
+     border: 1px solid rgb(235, 235, 235);
+     background-color: var(--green);
 }
 aside li {
      padding: 15px 20px;
      border: 1px solid rgb(235, 235, 235);
      font-size: 14px;
+     background-color: var(--white);
      text-transform: uppercase;
      color: var(--blue);
-     transition: background 0.2s ease-in-out;
+     transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+     transform: translateX(0px);
 }
 
 aside li:hover {
-     background-color: rgb(235, 235, 235);
+     background-color: rgb(230, 230, 230);
      cursor: pointer;
+     transform: translateX(5px);
 }
 aside li span {
      visibility: hidden;
+     text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
      float: right;
      margin-top: -6px;
      font-size: 20px;
-     color: var(--pink);
-     transition: color 0.2s ease-in-out;
+     color: white;
+     transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
 }
 aside li:hover span {
      visibility: visible;
+     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 aside li:hover span:hover {
-     color: var(--green);
+     color: var(--pink);
 }
 main {
      max-width: 86%;
@@ -119,8 +126,11 @@ main {
      font-size: 14px;
 }
 .search input {
-     line-height: 2rem;
+     line-height: 2.5rem;
      width: 200px;
+     border: 2px solid rgb(235, 235, 235);
+     font-size: 16px;
+     padding: 0 15px;
 }
 
 .search button {
@@ -160,6 +170,9 @@ main {
      color: var(--blue);
      font-weight: 700;
 }
+.search .material-icons {
+     line-height: 1.25em;
+}
 .uv {
      padding: 5px 10px;
      border-radius: 2px;
@@ -184,13 +197,12 @@ ol {
 }
 ol img {
      margin-bottom: 20px;
-     text-align: center;
+     text-align: centera;
 }
 ol li {
      display: block;
      max-width: 17%;
-     border: 2px solid var(--white);
-     background-color: var(--light-blue);
+     background-color: var(--white);
      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
      border-radius: 6px;
      padding: 2vw;

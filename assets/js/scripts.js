@@ -26,3 +26,18 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 */
+
+//Lets grab the dom elements we need
+const searchInput = $("#search");
+const searchButton = $(".search-btn");
+const fiveDayContainer = $(".forcast");
+const todayContainer = $(".today");
+const citiesList = $(".cities");
+
+
+
+
+
+
+
+//Have a Event Delegation function for the cities list
