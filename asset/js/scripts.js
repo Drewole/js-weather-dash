@@ -34,7 +34,7 @@ const fiveDayContainer = $(".forcast");
 const todayContainer = $(".today");
 const citiesListEl = $(".cities");
 
-var searchItems = [];
+var searchItems = ["Chicago","Minneapolis","New York", "Charlotte", "Tampa"];
 
 
 
