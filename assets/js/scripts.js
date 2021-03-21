@@ -32,12 +32,40 @@ const searchInput = $("#search");
 const searchButton = $(".search-btn");
 const fiveDayContainer = $(".forcast");
 const todayContainer = $(".today");
-const citiesList = $(".cities");
+const citiesListEl = $(".cities");
+
+var searchItems = [];
 
 
 
 
 
+
+// Go through our time array and put it on the page plz
+function makeCityList(arr) {
+
+	for (i = 0; i < arr.length; i++) {
+
+		//This will be our HTML
+		let liTemplate = `
+                         ${arr[i]}
+                        <span class="material-icons">
+                              delete
+                        </span>
+                  `;
+			
+
+		//Lets create the element, add some classes and set some attributes, then add it to the bottom of the container div
+		var citySearchItem = document.createElement("li");
+		citySearchItem.innerHTML = liTemplate;
+		citySearchItem.classList.add("time-block", "row");
+
+		citiesListEl.appendChild(timeBlock);
+	}
+
+
+}
+makeCityList(searchItems);
 
 
 //Have a Event Delegation function for the cities list
