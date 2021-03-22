@@ -30,12 +30,13 @@ body {
 
 header {
      position: fixed;
+     border-bottom: 4px solid var(--yellow);
      width: 100%;
      padding: 35px;
      text-align: center;
      background-color: var(--blue);
      z-index: 10;
-     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+     box-shadow: 0 1.1px 1.1px rgba(0, 0, 0, 0.022), 0 2.8px 2.7px rgba(0, 0, 0, 0.031), 0 5.7px 5.5px rgba(0, 0, 0, 0.039), 0 11.7px 11.3px rgba(0, 0, 0, 0.048), 0 32px 31px rgba(0, 0, 0, 0.07);
 }
 header h1 {
      color: var(--white);
@@ -124,6 +125,7 @@ main {
      display: block;
      text-transform: uppercase;
      font-size: 14px;
+     font-weight: 800;
 }
 .search input {
      line-height: 2.5rem;
@@ -131,6 +133,10 @@ main {
      border: 2px solid rgb(235, 235, 235);
      font-size: 16px;
      padding: 0 15px;
+}
+.search input:focus {
+     outline: none !important;
+     border: 2px solid var(--yellow);
 }
 
 .search button {

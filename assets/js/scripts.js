@@ -34,40 +34,90 @@ const fiveDayContainer = $(".forcast");
 const todayContainer = $(".today");
 const citiesListEl = $(".cities");
 
-var searchItems = ["Chicago","Minneapolis","New York", "Charlotte", "Tampa"];
-
-
-
+// var searchItems = ["Chicago","Minneapolis","New York", "Charlotte", "Tampa"];
+var searchItems = [];
 
 
 
 // Go through our time array and put it on the page plz
-function makeCityList(arr) {
-
-	for (i = 0; i < arr.length; i++) {
+function makeCityList(ar) {
+	
+	for (i = 0; i < searchItems.length; i++) {
 
 		//This will be our HTML
 		let liTemplate = `
 			<li>
-                         ${arr[i]}
+                         ${searchItems[i]}
                         <span class="material-icons">
                               delete
                         </span>
 			</li>
                   `;
 			
-
 		//Lets create the element, add some classes and set some attributes, then add it to the bottom of the container div
 		var citySearchItem = $("<li>");
 		citySearchItem.innerHTML = liTemplate;
 
 		citiesListEl.append(liTemplate);
-		console.log(liTemplate)
 	}
-
-
 }
-makeCityList(searchItems);
+
+searchInput.keypress(function (event) {
+	if (event.keyCode === 13) {
+		console.log("Keypress")
+		console.log(searchItems)
+		searchItems.push(searchInput.val())
+		makeCityList();
+		searchInput.val("");
+	}
+});
 
 
 //Have a Event Delegation function for the cities list
+// Lets also figure out how to add the ability to hit enter to update the score 
+searchButton.on("click",  function(event){
+	console.log("Click")
+	console.log(searchItems)
+	searchItems.push(searchInput.val())
+	makeCityList();
+	searchInput.val("");
+});
+
+
+function getWeatherData(citySearch) {
+	// fetch request gets a list of all the repos for the node.js organization
+
+	// API url from openweather api.openweathermap.org/data/2.5/forecast?q={city name}&appid=3253fb7b8c398a925dd53915f3526822
+	
+	let cityGeocodeUrl = `http://api.positionstack.com/v1/forward?access_key=cbfda538c5445110ea0ae5fb6a27ebb4&query=${citySearch}&limit=1`
+
+	
+	fetch(cityGeocodeUrl)
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			console.log(data)
+			let lat = data.data[0].latitude;
+			let lon = data.data[0].longitude;
+
+			let weatherRequestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=3253fb7b8c398a925dd53915f3526822`;
+			// let weatherRequestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=44.96313&lon=-93.266563&units=imperial&exclude=current,minutely,hourly,alerts&appid=3253fb7b8c398a925dd53915f3526822`;
+
+			
+			fetch(weatherRequestUrl)
+				.then(function (response) {
+					return response.json();
+				})
+				.then(function (data) {
+					console.log(data)
+
+					// Down here we put all the stuff where it will build the sections we want
+					//TODO: This is the url for the icons, codes are in the response. http://openweathermap.org/img/wn/11n@2x.png
+
+				});
+		});
+	}
+		
+
+getWeatherData("minneapolis");
