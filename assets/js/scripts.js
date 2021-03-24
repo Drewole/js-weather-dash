@@ -35,6 +35,7 @@ var searchItems = [];
 if (localStorage.getItem("searchItems") !== null) {
 	searchItems = JSON.parse(localStorage.getItem("searchItems"));
 	makeCityList(searchItems);
+	getWeatherData(searchItems[0]) // Lets get the most recent search results
 }
 
 function saveToLocalStorage(val) {

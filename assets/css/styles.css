@@ -181,7 +181,6 @@ main img {
      font-weight: bolder;
 }
 .today h2 {
-     margin-top: 25px;
      color: var(--blue);
      font-weight: 700;
 }
