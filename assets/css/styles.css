@@ -158,6 +158,11 @@ main {
 main {
      padding: 2vw;
 }
+main img {
+     padding: 5px;
+     border-radius: 50%;
+     background-color: var(--yellow);
+}
 .today {
      background-color: var(--white);
      margin-bottom: 4vh;
@@ -199,7 +204,6 @@ main {
 }
 .five-day {
      margin-bottom: 4vh;
-     padding: 2vw;
 }
 ol {
      display: flex;
@@ -207,8 +211,8 @@ ol {
      justify-content: space-between;
 }
 ol img {
-     margin-bottom: 20px;
-     text-align: centera;
+     margin: 0 auto 20px;
+     display: block;
 }
 ol li {
      display: block;

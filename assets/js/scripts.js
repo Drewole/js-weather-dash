@@ -1,11 +1,6 @@
 /* 
 User Story
 
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-
-
 Acceptance Criteria
 
 GIVEN a weather dashboard with form inputs
@@ -30,42 +25,19 @@ THEN I am again presented with current and future conditions for that city
 //Lets grab the dom elements we need
 const searchInput = $("#search");
 const searchButton = $(".search-btn");
-const fiveDayContainer = $(".forcast");
-const todayContainer = $(".today");
+const fiveDayContainer = $(".forecast");
+const todayContainer = $(".today-items");
 const citiesListEl = $(".cities");
 
 // var searchItems = ["Chicago","Minneapolis","New York", "Charlotte", "Tampa"];
 var searchItems = [];
 
-//From BCS assistant
-// function buildCity(city) {
-// 	//do basically everything you're doing in your for loop here
-// }
-
-// function makeCityList(ar) {
-// 	for (i = 0; i < searchItems.length; i++) {
-// 		buildCity(searchItems[i]
-//      }
-// }
-// You're basically moving everything that actually adds the li into a separate function that just builds a single li
-// 10: 21
-// Then anywhere you need to create the li(in your existing for loop and event listeners), you call that function
 
 
-// searchButton.on("click", function (event) {
-// 	// searchItems.push(searchInput.val())
-// 	buildCity(searchInput.val());
-// 	searchInput.val("");
-// });
-
-// function buildCity(city) {
-	
-// }
-
-// Go through our time array and put it on the page plz
+// Go through our time array and put it on the page
 function makeCityList() {
+	citiesListEl.empty();
 	for (i = 0; i < searchItems.length; i++) {
-
 		//This will be our HTML
 		let liTemplate = `
 			<li>
@@ -105,71 +77,70 @@ searchButton.on("click",  function(event){
 });
 
 
-function getWeatherData(citySearch) {
-	// fetch request gets a list of all the repos for the node.js organization
 
-	// API url from openweather api.openweathermap.org/data/2.5/forecast?q={city name}&appid=3253fb7b8c398a925dd53915f3526822
-	
+
+function getWeatherData(citySearch) {
+
+	//Lets get the coords of the city the user searches
 	let cityGeocodeUrl = `http://api.positionstack.com/v1/forward?access_key=cbfda538c5445110ea0ae5fb6a27ebb4&query=${citySearch}&limit=1`
 
-	
 	fetch(cityGeocodeUrl)
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
-			console.log(data)
 			let cityTitle = $(".city-title");
+			cityTitle.empty();
 			cityTitle.text(data.data[0].name);
-			// <h2>Atlanta (8/15/2019) CloudIcon</h2>
 			let lat = data.data[0].latitude;
 			let lon = data.data[0].longitude;
 
+			//Lets get the weather information with our coordinates now
 			let weatherRequestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=3253fb7b8c398a925dd53915f3526822`;
-			// let weatherRequestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=44.96313&lon=-93.266563&units=imperial&exclude=current,minutely,hourly,alerts&appid=3253fb7b8c398a925dd53915f3526822`;
 
-			
 			fetch(weatherRequestUrl)
 				.then(function (response) {
 					return response.json();
 				})
 				.then(function (data) {
-					console.log(data)
-					cityTitle.append(`<img src='http://openweathermap.org/img/wn/${data.daily[0].weather[0].icon}.png' alt='${data.daily[0].weather[0].description}'/>`)
+					console.log(data);
+					cityTitle.append(`<img src='http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png' alt='${data.daily[0].weather[0].description}'/>`)
 					let uv;
-					if (data.daily[0].uvi <= 4) {
+					if (data.current.uvi <= 4) {
 						uv = "low";
-					} else if (data.daily[0].uvi > 4) {
+					} else if (data.current.uvi > 4 && data.current.uvi < 9 ) {
 						uv = "medium";
 					} else {
 						uv = "high";
-					} 
-					
+					}
+					//Create the template
 					let today = `
 							<ul class="summary">
-								<li><span>Temperature:</span> ${data.daily[0].temp.day}°F</li>
-								<li><span>Humidity:</span> ${data.daily[0].humidity}%</li>
-								<li><span>Wind Speed:</span> ${data.daily[0].wind_speed} MPH</li>
-								<li><span>UV Index:</span> <span class="uv ${uv}">${data.daily[0].uvi}</span></li>
+								<li><span>Temperature:</span> ${data.current.temp}°F</li>
+								<li><span>Humidity:</span> ${data.current.humidity}%</li>
+								<li><span>Wind Speed:</span> ${data.current.wind_speed} MPH</li>
+								<li><span>UV Index:</span> <span class="uv ${uv}">${data.current.uvi}</span></li>
 							</ul>
 							`
+					console.log(today)
+					todayContainer.empty();
 					todayContainer.append(today)
 
+					fiveDayContainer.empty();
 					for (i = 1; i < 6; i++) {
-			let fiveDayTemplate = `
-					<li class="card">
-						<h3>8/16/2021</h3>
-						<img src='http://openweathermap.org/img/wn/${data.daily[i].weather[i].icon}.png' alt='${data.daily[i].weather[i].description}'/>
-						<span class="temp">Temp: ${data.daily[0].temp.day}°F</span>
-						<span class="humidity">Humidity: ${data.daily[0].humidity}%</span>
-					</li>
-		
-						`;
-					}
-		
-					// Down here we put all the stuff where it will build the sections we want
-					//TODO: This is the url for the icons, codes are in the response. http://openweathermap.org/img/wn/11n@2x.png
+						var dateConverted = moment.unix(data.daily[i].dt).format("MM/DD/YYYY");
+						let fiveDayTemplate = `
+							
+							<h3>${dateConverted}</h3>
+							<img src='http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png' alt='${data.daily[i].weather[0].description}'/>
+							<span class="temp">Temp: ${data.daily[i].temp.day}°F</span>
+							<span class="humidity">Humidity: ${data.daily[i].humidity}%</span>
+							`;
 
+						let fiveDayItem = $("<li>").html(fiveDayTemplate).addClass("card");
+						
+						fiveDayContainer.append(fiveDayItem);
+					}
 				});
 		});
 	}
