@@ -32,21 +32,21 @@ const citiesListEl = $(".cities");
 // var searchItems = ["Chicago","Minneapolis","New York", "Charlotte", "Tampa"];
 var searchItems = [];
 
+if (localStorage.getItem("searchItems") !== null) {
+	searchItems = JSON.parse(localStorage.getItem("searchItems"));
+	makeCityList(searchItems);
+}
 
+function saveToLocalStorage(val) {
+	localStorage.setItem("searchItems" , JSON.stringify(val));
+}
 
 // Go through our time array and put it on the page
 function makeCityList() {
 	citiesListEl.empty();
 	for (i = 0; i < searchItems.length; i++) {
 		//This will be our HTML
-		let liTemplate = `
-			<li>
-                         ${searchItems[i]}
-                        <span class="material-icons">
-                              delete
-                        </span>
-			</li>
-                  `;
+		let liTemplate = `<li>${searchItems[i]}</li>`;
 
 		//Lets create the element, add some classes and set some attributes, then add it to the bottom of the container div
 		var citySearchItem = $("<li>");
@@ -56,11 +56,26 @@ function makeCityList() {
 	}
 	
 }
+// Lets save the item to local storage when they hit the save button
+citiesListEl.on('click', 'li', function (e) {
+	let clickValue = $(this).text();
+	console.log(clickValue)
+
+	for (i = 0; i < searchItems.length; i++) {
+
+		if (clickValue === searchItems[i]) {
+			getWeatherData(clickValue);
+		};
+
+	};
+
+});
 
 searchInput.keypress(function (event) {
 	if (event.keyCode === 13) {
 		getWeatherData(searchInput.val())
 		searchItems.push(searchInput.val())
+		saveToLocalStorage(searchItems);
 		makeCityList();
 		searchInput.val("");
 	}
@@ -72,6 +87,7 @@ searchInput.keypress(function (event) {
 searchButton.on("click",  function(event){
 	getWeatherData(searchInput.val())
 	searchItems.push(searchInput.val())
+	saveToLocalStorage(searchItems);
 	makeCityList();
 	searchInput.val("");
 });

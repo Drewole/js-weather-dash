@@ -205,6 +205,9 @@ main img {
 .five-day {
      margin-bottom: 4vh;
 }
+.five-day h2 {
+     margin-top: 40px;
+}
 ol {
      display: flex;
      flex-direction: row;
