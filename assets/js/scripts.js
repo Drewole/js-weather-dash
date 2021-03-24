@@ -99,7 +99,7 @@ searchButton.on("click",  function(event){
 function getWeatherData(citySearch) {
 
 	//Lets get the coords of the city the user searches
-	let cityGeocodeUrl = `https://api.positionstack.com/v1/forward?access_key=cbfda538c5445110ea0ae5fb6a27ebb4&query=${citySearch}&limit=1`
+	let cityGeocodeUrl = `http://api.positionstack.com/v1/forward?access_key=cbfda538c5445110ea0ae5fb6a27ebb4&query=${citySearch}&limit=1`
 
 	fetch(cityGeocodeUrl)
 		.then(function (response) {
